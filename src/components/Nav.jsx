@@ -20,7 +20,7 @@ const Nav = ({cart}) => {
                 </Link>
                 <ul className='nav__links'>
                     <li className='nav__list'>
-                        <Link to="/" className='nav__link'>
+                        <Link to="/E-Commerce-with-React" className='nav__link'>
                             Home
                         </Link>
                     </li>
@@ -45,7 +45,7 @@ const Nav = ({cart}) => {
                     </button>
                     <ul className='menu__links'>
                         <li className='menu__list'>
-                            <Link to="/" className='menu__link'>
+                            <Link to="/E-Commerce-with-React" className='menu__link'>
                                 Home
                             </Link>
                         </li>

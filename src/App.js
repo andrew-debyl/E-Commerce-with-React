@@ -38,7 +38,7 @@ function App() {
     <Router>
       <div className="App">
         <Nav cart = {cart}/>
-        <Route path="/" exact component={Home} />
+        <Route path="/E-Commerce-with-React" exact component={Home} />
         <Route path="/books" exact render={() => <Books books={books} />} />
         <Route
           path="/books/:id"

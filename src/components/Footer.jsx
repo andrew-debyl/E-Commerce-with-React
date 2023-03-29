@@ -13,7 +13,7 @@ const Footer = () => {
             </figure>
           </Link>
           <div className="footer__list">
-            <Link to="/" className="footer__link">
+            <Link to="/E-Commerce-with-React" className="footer__link">
               Home
             </Link>
             <span className="footer__link no-cursor">About</span>
