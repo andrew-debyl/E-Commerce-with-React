@@ -1,0 +1,92 @@
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link, useParams } from "react-router-dom";
+import Rating from "../components/uI/Rating";
+import Price from "../components/uI/Price";
+import Book from "../components/uI/Book";
+
+const BookInfo = ({ books, addToCart, cart }) => {
+  const { id } = useParams(); //getting the id
+  const book = books.find((book) => +book.id === +id); //finding the book id that matches the id we get, and since we are compaing a string (id we get from param) and a number (from books) we can put a '+' in front of both to convert both to a number
+
+  function addBookToCart(book) {
+    addToCart(book);
+  }
+
+  function bookExistsOnCart() {
+    return cart.find((book) => book.id === +id);
+  }
+
+  return (
+    <div id="books__body">
+      <main id="books__main">
+        <div className="books__container">
+          <div className="row">
+            <div className="book__selected--top">
+              <Link to="/books" className="book__link">
+                <FontAwesomeIcon icon="arrow-left"></FontAwesomeIcon>
+              </Link>
+              <Link to="/books" className="book__link">
+                <h2 className="book__selected--title--top">Books</h2>
+              </Link>
+            </div>
+            <div className="book__selected">
+              <figure className="book__selected--figure">
+                <img src={book.url} />
+              </figure>
+              <div className="book__selected--description">
+                <h2 className="book__selected--title">{book.title}</h2>
+                <Rating rating={book.rating} />
+                <div className="book__selected--price">
+                  <Price
+                    salePrice={book.salePrice}
+                    originalPrice={book.originalPrice}
+                  />
+                </div>
+                <div className="book__summary">
+                  <h3 className="book__summary--title">Summary</h3>
+                  <p className="book__summary--para">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Eius, tempore nemo? Ab ullam recusandae sed fugiat
+                    voluptates sint libero minus molestias eligendi minima
+                    distinctio, ex itaque. Iste odit alias esse?
+                  </p>
+                  <p className="book__summary--para">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Eius, tempore nemo? Ab ullam recusandae sed fugiat
+                    voluptates sint libero minus molestias eligendi minima
+                    distinctio, ex itaque. Iste odit alias esse?
+                  </p>
+                </div>
+                {bookExistsOnCart() ? (
+                  <Link to={`/cart/${book.id}`} className="book__link">
+                    <button className="btn">Checkout</button>
+                  </Link>
+                ) : (
+                  <button className="btn" onClick={() => addBookToCart(book)}>
+                    Add to cart
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="books__container">
+          <div className="row">
+            <div className="book__selected--top">
+              <h2 className="book__selected--title--top">Recommended Books</h2>
+            </div>
+            <div className="books">
+              {books
+                .filter((book) => book.rating === 5 && +book.id !== +id)
+                .map((book) => <Book book={book} key={book.id} />)
+                .slice(0, 4)}
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default BookInfo;
