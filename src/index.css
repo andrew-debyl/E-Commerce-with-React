@@ -257,7 +257,7 @@ header {
   
   /* Added this after the tutorial to 
   make landing page responsive on laptops */
-  max-height: 50vh;
+  max-height: 40vh;
 }
 
 .container {
